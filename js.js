@@ -2,10 +2,21 @@ function getComputerChoice() {
     return parseInt(Math.random() * 3 + 1);
 }
 
-function getHumanChoice() {
-    return prompt("Rock Paper or Scissors?");
-}
-
+// function getHumanChoice() {
+//     return prompt("Rock Paper or Scissors?");
+// }
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", ()=>{
+    playRound("rock",getComputerChoice());
+});
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", ()=>{
+    playRound("paper",getComputerChoice());
+});
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", ()=>{
+    playRound("scissors",getComputerChoice());
+});
 let humanScore=0;
 let computerScore=0;
 
@@ -46,14 +57,19 @@ function playRound(human, cpu) {
                 break;
         }
     }
-}
-
-
-function playGame(){
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice().toLowerCase(),getComputerChoice());
+    document.getElementById("wins").textContent = humanScore;
+    document.getElementById("loss").textContent = computerScore;
+    if(humanScore===5){
+        alert("Human Wins");
+        humanScore = 0;
+    }else if(computerScore===5){
+        alert("Computer Wins");
+        computerScore = 0;
     }
+   
+
+
 }
-playGame();
-console.log(humanScore);
-console.log(computerScore);
+
+
+
